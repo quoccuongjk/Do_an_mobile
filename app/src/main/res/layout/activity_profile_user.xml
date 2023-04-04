@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Profile_User">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#A4B9B9"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="130dp">
+
+        <ImageView
+            android:id="@+id/back_user"
+            android:layout_width="100px"
+            android:layout_height="100px"
+            android:layout_marginLeft="20px"
+            android:layout_marginTop="20px"
+            android:src="@drawable/back_profile"></ImageView>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/avt_user"
+            android:layout_width="300px"
+            android:layout_height="300px"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10px"
+            android:src="@drawable/picture_1"
+            app:civ_border_color="@color/black"
+            app:civ_border_width="4px"></de.hdodenhof.circleimageview.CircleImageView>
+
+        <TextView
+            android:id="@+id/name_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20px"
+            android:text="Name"
+            android:textAlignment="center"
+            android:textSize="77px"></TextView>
+
+        <TextView
+            android:id="@+id/sdt_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30px"
+            android:layout_marginTop="77px"
+            android:text="Phone: "
+            android:textSize="77px"></TextView>
+
+        <TextView
+            android:id="@+id/diachi_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30px"
+            android:layout_marginTop="20px"
+            android:text="Diachi"
+            android:textSize="77px"></TextView>
+
+        <TextView
+            android:id="@+id/email_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30px"
+            android:layout_marginTop="20px"
+            android:text="Email"
+            android:textSize="77px"></TextView>
+        <Button
+            android:id="@+id/edit_user"
+            android:text="Edit"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:textColor="#FB0202"
+            android:backgroundTint="#A3B8B8"
+            android:layout_marginTop="666px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20px"
+            android:layout_marginRight="20px">
+        </Button>
+        <Button
+            android:id="@+id/out_user"
+            android:text="Log Out"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:textColor="#FB0202"
+            android:backgroundTint="#A3B8B8"
+            android:layout_marginTop="5px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20px"
+            android:layout_marginRight="20px">
+        </Button>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
