@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "401403009443",
+    "project_id": "doanmobile-fce36",
+    "storage_bucket": "doanmobile-fce36.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:401403009443:android:423f66514393565f40a216",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "401403009443-7rboq5u52kcn91rapvn0f3bpromjbinm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDsNIgmVC5ZjFTAFPZgOBH8RLA9EM-yLE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "401403009443-7rboq5u52kcn91rapvn0f3bpromjbinm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

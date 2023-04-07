@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Profile"
+    android:id="@+id/profile_con">
+
+    <RelativeLayout
+        android:id="@+id/toolbar_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#4B6EAE"
+        tools:ignore="MissingConstraints">
+
+        <ImageView
+            android:id="@+id/back_profile"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/back_profile"></ImageView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="30dp"
+            android:gravity="center"
+            android:text="Chi Tiết Sản Phẩm"
+            android:textSize="20dp"></TextView>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_profile"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp">
+
+        <ImageView
+            android:id="@+id/image_profile"
+            android:layout_width="180dp"
+            android:layout_height="180dp"></ImageView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/name_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Name"></TextView>
+
+            <TextView
+                android:id="@+id/price_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:text="Giá: "></TextView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:text="Số Lượng: "></TextView>
+
+                <ImageView
+                    android:id="@+id/sub_profile"
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="30dp"
+                    android:src="@drawable/subb_profile"></ImageView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textSize="20dp"></TextView>
+
+                <ImageView
+                    android:id="@+id/add_profile"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/add_profile"></ImageView>
+            </LinearLayout>
+            <TextView
+                android:id="@+id/Tong_User"
+                android:layout_marginTop="40px"
+                android:layout_marginLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tổng: ">
+            </TextView>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="420dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="Mô tả sản phẩm"></TextView>
+
+        <ScrollView
+            android:id="@+id/view_user"
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></ScrollView>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/ok_user"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:backgroundTint="#499B54"
+        android:text="Thêm Vào Giỏ Hàng"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        tools:layout_editor_absoluteX="0dp"></Button>
+</androidx.constraintlayout.widget.ConstraintLayout>

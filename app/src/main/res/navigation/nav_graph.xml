@@ -33,7 +33,7 @@
 
     <fragment android:id="@+id/food"
         android:name="com.example.myapplication.fragment.FoodFragment"
-        android:label="Example Fragment"
+        android:label="Food"
         tools:layout="@layout/fragment_food">
 
     </fragment>
