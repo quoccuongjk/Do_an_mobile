@@ -93,7 +93,7 @@
                 android:layout_height="wrap_content">
             </Button>
             <Button
-                android:id="@ok_pay"
+                android:id="@+id/ok_pay"
                 android:backgroundTint="#ACA8A8"
                 android:text="OK"
                 android:layout_width="wrap_content"
