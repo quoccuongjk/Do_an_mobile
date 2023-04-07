@@ -1,38 +1,33 @@
-package com.example.myapplication;
+package com.example.myapplication.fragment;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 
-import androidx.annotation.DrawableRes;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
-import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.GridLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.Toast;
-import android.widget.ViewFlipper;
 
-import com.squareup.picasso.Picasso;
+import com.example.myapplication.MainActivity;
+import com.example.myapplication.model.Photo;
+import com.example.myapplication.adapter.PhotoViewPageAdapter;
+import com.example.myapplication.model.FoodType;
+import com.example.myapplication.adapter.FoodTypeAdapter;
+import com.example.myapplication.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import me.relex.circleindicator.CircleIndicator;
-import me.relex.circleindicator.CircleIndicator3;
 
 
 public class HomeFragment extends Fragment {
@@ -73,23 +68,26 @@ public class HomeFragment extends Fragment {
     private void typeProduct() {
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(mainActivity,2);
         recyclerView.setLayoutManager(layoutManager);
-        ProductTypeAdapter productTypeAdapter = new ProductTypeAdapter(getListType(), new ProductTypeAdapter.IClick() {
-            @Override
-            public void onClick() {
+        FoodTypeAdapter productTypeAdapter = new FoodTypeAdapter(getListType(), (FoodType productType) -> {
+            //Todo: open example fragment
+            NavController navController = NavHostFragment.findNavController(HomeFragment.this);
 
-            }
+            Bundle bundle = new Bundle();
+            bundle.putInt("product_id", productType.getId());
+            navController.navigate(R.id.action_home_to_exampleFragment, bundle);
+
         });
         recyclerView.setAdapter(productTypeAdapter);
     }
 
-    private List<ProductType> getListType() {
-        List<ProductType> list = new ArrayList<>();
-        list.add(new ProductType(1,"South Indian",R.drawable.picture_3));
-        list.add(new ProductType(1,"South Indian",R.drawable.picture_3));
-        list.add(new ProductType(1,"South Indian",R.drawable.picture_3));
-        list.add(new ProductType(1,"South Indian",R.drawable.picture_3));
-        list.add(new ProductType(1,"South Indian",R.drawable.picture_3));
-        list.add(new ProductType(1,"South Indian",R.drawable.picture_3));
+    private List<FoodType> getListType() {
+        List<FoodType> list = new ArrayList<>();
+        list.add(new FoodType(1,"South Indian 1",R.drawable.picture_3));
+        list.add(new FoodType(2,"South Indian 2",R.drawable.picture_3));
+        list.add(new FoodType(3,"South Indian 3",R.drawable.picture_3));
+        list.add(new FoodType(4,"South Indian 4",R.drawable.picture_3));
+        list.add(new FoodType(5,"South Indian 5",R.drawable.picture_3));
+        list.add(new FoodType(6,"South Indian 6",R.drawable.picture_3));
         return list;
     }
 

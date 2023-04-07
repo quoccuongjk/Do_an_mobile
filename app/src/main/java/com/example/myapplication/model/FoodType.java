@@ -1,11 +1,11 @@
-package com.example.myapplication;
+package com.example.myapplication.model;
 
-public class ProductType {
+public class FoodType {
     private int id;
     private String title;
     private int image;
 
-    public ProductType(int id, String title, int image) {
+    public FoodType(int id, String title, int image) {
         this.id = id;
         this.title = title;
         this.image = image;

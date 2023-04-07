@@ -6,11 +6,15 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
+import com.example.myapplication.fragment.CartFragment;
+import com.example.myapplication.fragment.HomeFragment;
+import com.example.myapplication.fragment.SearchFragment;
+
 
 public class ViewPageAdapter extends FragmentStatePagerAdapter {
 
 
-    public ViewPageAdapter(@NonNull FragmentManager fragmentManager, @NonNull int lifecycle) {
+    public ViewPageAdapter(@NonNull FragmentManager fragmentManager, int lifecycle) {
         super(fragmentManager, lifecycle);
     }
 
@@ -28,8 +32,6 @@ public class ViewPageAdapter extends FragmentStatePagerAdapter {
                 return new HomeFragment();
         }
     }
-
-    @NonNull
 
     @Override
     public int getCount() {

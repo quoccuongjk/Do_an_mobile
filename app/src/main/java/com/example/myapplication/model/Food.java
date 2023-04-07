@@ -1,16 +1,16 @@
-package com.example.myapplication;
+package com.example.myapplication.model;
 
-public class FoodCart {
+public class Food {
     private int id;
     private String name;
     private int image;
-    private int price;
+    private String describe;
 
-    public FoodCart(int id, String name, int image, int price) {
+    public Food(int id, String name, int image, String describe) {
         this.id = id;
         this.name = name;
         this.image = image;
-        this.price = price;
+        this.describe = describe;
     }
 
     public int getId() {
@@ -37,11 +37,11 @@ public class FoodCart {
         this.image = image;
     }
 
-    public int getPrice() {
-        return price;
+    public String getDescribe() {
+        return describe;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public void setDescribe(String describe) {
+        this.describe = describe;
     }
 }

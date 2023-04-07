@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.fragment;
 
 import android.os.Bundle;
 
@@ -9,6 +9,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.myapplication.model.FoodCart;
+import com.example.myapplication.adapter.FoodCartAdapter;
+import com.example.myapplication.MainActivity;
+import com.example.myapplication.R;
 
 import java.util.ArrayList;
 import java.util.List;
