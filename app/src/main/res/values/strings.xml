@@ -8,7 +8,7 @@
     <string name="password">Mật khẩu</string>
     <string name="confirmPassword">Nhập lại mật khẩu</string>
     <string name="loginNow">Nhấp vào đây để đăng nhập!</string>
-    <string name = "registerNow">Bạn chưa có tài khoản?</string>
+    <string name = "registerNow">Bạn chưa có tài khoản? Đăng ký.</string>
     <!-- Preference Titles -->
     <string name="messages_header">Messages</string>
     <string name="sync_header">Sync</string>
