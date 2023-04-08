@@ -1,5 +1,7 @@
 package com.example.myapplication.fragment;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,7 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.example.myapplication.Profile;
 import com.example.myapplication.model.FoodCart;
 import com.example.myapplication.adapter.FoodCartAdapter;
 import com.example.myapplication.MainActivity;
@@ -23,6 +27,7 @@ public class CartFragment extends Fragment {
     MainActivity mainActivity;
     View mView;
     RecyclerView recyclerView;
+    TextView textView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,9 +39,8 @@ public class CartFragment extends Fragment {
         return mView;
     }
     private void init() {
-
+        textView = mView.findViewById(R.id.cart_pay);
         recyclerView = mView.findViewById(R.id.rcv_cart);
-
     }
     private void foodCart() {
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(mainActivity,1);

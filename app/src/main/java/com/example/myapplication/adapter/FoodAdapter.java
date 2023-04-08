@@ -1,15 +1,20 @@
 package com.example.myapplication.adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.Profile;
 import com.example.myapplication.R;
+import com.example.myapplication.fragment.FoodFragment;
 import com.example.myapplication.model.Food;
 import com.example.myapplication.model.FoodCart;
 
@@ -34,8 +39,8 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
         Food food = list.get(position);
         holder.tvName.setText(food.getName());
         holder.imageView.setImageResource(food.getImage());
-
     }
+
 
     @Override
     public int getItemCount() {
