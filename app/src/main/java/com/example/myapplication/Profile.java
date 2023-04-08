@@ -15,7 +15,7 @@ import com.example.myapplication.fragment.CartFragment;
 public class Profile extends AppCompatActivity {
     Button button;
     int count;
-    ImageView imageView1 , imageView2;
+    ImageView imageView1 , imageView2,imageView3;
     TextView textView1,textView2,textView3;
     @SuppressLint("MissingInflatedId")
     @Override
@@ -29,7 +29,15 @@ public class Profile extends AppCompatActivity {
         textView1 = findViewById(R.id.tong_profile);
         imageView1 = findViewById(R.id.add_profile);
         imageView2 = findViewById(R.id.sub_profile);
+        imageView3 = findViewById(R.id.back_profile);
         imageView2.setVisibility(imageView2.INVISIBLE);
+        imageView3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                startActivity(intent);
+            }
+        });
         imageView1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

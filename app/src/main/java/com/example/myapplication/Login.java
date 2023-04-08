@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -84,8 +85,12 @@ public class Login extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 progressBar.setVisibility(View.GONE);
                                 if (task.isSuccessful()) {
+//                                    SharedPreferences preferences = getSharedPreferences("email_log", Context.MODE_PRIVATE);
+//                                    SharedPreferences.Editor editor = preferences.edit();
+//                                    editor.putString("email", editTextEmail.getText().toString());
+//                                    editor.apply();
                                     email_profile=editTextEmail.getText().toString();
-                                    Toast.makeText(Login.this, "Đăng nhập thành công!",
+                                    Toast.makeText(Login.this,"Đăng nhập thành công",
                                             Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                                     startActivity(intent);

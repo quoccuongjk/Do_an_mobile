@@ -10,11 +10,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 
 import com.example.myapplication.databinding.ActivityMainBinding;
+import com.example.myapplication.fragment.FoodFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -71,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 return super.onOptionsItemSelected(item);
             case R.id.profile1:
-                Intent intent2 = new Intent(getApplicationContext(),Profile.class);
+                Intent intent2 = new Intent(getApplicationContext(), Profile_User.class);
                 startActivity(intent2);
                 return super.onOptionsItemSelected(item);
         }
