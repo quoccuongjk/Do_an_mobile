@@ -53,7 +53,11 @@
             android:exported="false" />
         <activity
             android:name=".Login"
-            android:exported="true"></activity>
+
+
+            android:exported="true"
+            android:theme="@style/Theme.Material3.Light.NoActionBar"/>
+
     </application>
 
 </manifest>

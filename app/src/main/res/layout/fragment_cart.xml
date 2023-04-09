@@ -37,6 +37,7 @@
                     android:textStyle="bold"/>
             </LinearLayout>
             <TextView
+                android:id="@+id/cart_pay"
                 android:layout_gravity="center"
                 android:layout_margin="15dp"
                 android:layout_width="match_parent"

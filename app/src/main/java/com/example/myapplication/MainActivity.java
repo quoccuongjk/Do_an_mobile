@@ -8,27 +8,18 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-import androidx.viewpager.widget.ViewPager;
 
 import com.example.myapplication.databinding.ActivityMainBinding;
-import com.example.myapplication.fragment.CartFragment;
-import com.example.myapplication.fragment.HomeFragment;
-import com.example.myapplication.fragment.SearchFragment;
+import com.example.myapplication.fragment.FoodFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.ktx.Firebase;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -78,12 +69,15 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.logout:
                 FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(getApplicationContext(),Login.class);
+                Intent intent = new Intent((getApplicationContext()),Login.class);
                 startActivity(intent);
-                finish();
+                return super.onOptionsItemSelected(item);
+            case R.id.profile1:
+                Intent intent2 = new Intent(getApplicationContext(),Profile_User.class);
+                startActivity(intent2);
+                return super.onOptionsItemSelected(item);
         }
         return super.onOptionsItemSelected(item);
-
     }
 
     @Override

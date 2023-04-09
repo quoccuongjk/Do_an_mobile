@@ -2,6 +2,9 @@ package com.example.myapplication.fragment;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+
+import android.content.Context;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;

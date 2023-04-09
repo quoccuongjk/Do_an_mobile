@@ -57,15 +57,26 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Name"></TextView>
-
-            <TextView
-                android:id="@+id/price_profile"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="20dp"
-                android:text="Giá: "></TextView>
-
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Giá: ">
+                </TextView>
+                <TextView
+                    android:id="@+id/price_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:text="10">
+                </TextView>
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -88,6 +99,7 @@
                     android:src="@drawable/subb_profile"></ImageView>
 
                 <TextView
+                    android:id="@+id/count_profile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
@@ -103,14 +115,26 @@
                     android:layout_marginLeft="20dp"
                     android:src="@drawable/add_profile"></ImageView>
             </LinearLayout>
-            <TextView
-                android:id="@+id/Tong_User"
-                android:layout_marginTop="40px"
-                android:layout_marginLeft="10dp"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Tổng: ">
-            </TextView>
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Tổng: ">
+                </TextView>
+                <TextView
+                    android:id="@+id/tong_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:text="demo tong">
+                </TextView>
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 
@@ -138,7 +162,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/ok_user"
+        android:id="@+id/ok_add"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:backgroundTint="#499B54"

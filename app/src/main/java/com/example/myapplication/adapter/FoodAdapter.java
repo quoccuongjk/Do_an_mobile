@@ -1,6 +1,8 @@
 package com.example.myapplication.adapter;
 
 import android.content.Context;
+
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +13,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.Profile;
 import com.example.myapplication.R;
+import com.example.myapplication.fragment.FoodFragment;
 import com.example.myapplication.model.Food;
 import com.example.myapplication.model.FoodCart;
 import com.example.myapplication.model.FoodType;
@@ -44,10 +48,13 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
     public void onBindViewHolder(@NonNull FoodViewHolder holder, int position) {
         Food food = list.get(position);
         holder.tvName.setText(food.getName());
+
         Picasso.with(context).load(food.getImage()).into(holder.imageView);
         holder.layout.setOnClickListener(view -> iClick.onClick(food));
 
+
     }
+
 
     @Override
     public int getItemCount() {
