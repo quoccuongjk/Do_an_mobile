@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 return super.onOptionsItemSelected(item);
             case R.id.profile1:
-                Intent intent2 = new Intent(getApplicationContext(), Profile_User.class);
+                Intent intent2 = new Intent(getApplicationContext(),Profile_User.class);
                 startActivity(intent2);
                 return super.onOptionsItemSelected(item);
         }
