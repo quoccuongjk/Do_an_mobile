@@ -2,13 +2,13 @@
     <string name="app_name">My Application</string>
     <string name="title_activity_settings">SettingsActivity</string>
     <string name="logout">Đăng xuất</string>
-    <string name= "login">Đăng Nhập</string>
+    <string name="login">Đăng Nhập</string>
     <string name="register">Đăng ký</string>
     <string name="email">Email</string>
     <string name="password">Mật khẩu</string>
     <string name="confirmPassword">Nhập lại mật khẩu</string>
     <string name="loginNow">Nhấp vào đây để đăng nhập!</string>
-    <string name = "registerNow">Bạn chưa có tài khoản? Đăng ký.</string>
+    <string name="registerNow">Bạn chưa có tài khoản? Đăng ký.</string>
     <!-- Preference Titles -->
     <string name="messages_header">Messages</string>
     <string name="sync_header">Sync</string>
