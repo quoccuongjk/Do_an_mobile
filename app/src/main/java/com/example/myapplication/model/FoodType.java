@@ -1,14 +1,20 @@
 package com.example.myapplication.model;
 
+import androidx.annotation.NonNull;
+
 public class FoodType {
     private int id;
-    private String title;
-    private int image;
+    private String img;
+    private String name;
 
-    public FoodType(int id, String title, int image) {
+
+    public FoodType(int id, String name, String img) {
         this.id = id;
-        this.title = title;
-        this.image = image;
+        this.img = img;
+        this.name = name;
+    }
+
+    public FoodType() {
     }
 
     public int getId() {
@@ -19,19 +25,20 @@ public class FoodType {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+
+    public String getImg() {
+        return img;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setImg(String img) {
+        this.img = img;
     }
 
-    public int getImage() {
-        return image;
+    public String getName() {
+        return name;
     }
 
-    public void setImage(int image) {
-        this.image = image;
+    public void setName(String name) {
+        this.name = name;
     }
 }

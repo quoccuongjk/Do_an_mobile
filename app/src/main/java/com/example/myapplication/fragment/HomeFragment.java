@@ -5,6 +5,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
@@ -16,6 +18,7 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.model.Photo;
@@ -23,6 +26,11 @@ import com.example.myapplication.adapter.PhotoViewPageAdapter;
 import com.example.myapplication.model.FoodType;
 import com.example.myapplication.adapter.FoodTypeAdapter;
 import com.example.myapplication.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +44,9 @@ public class HomeFragment extends Fragment {
     MainActivity mainActivity;
     View mView;
     RecyclerView recyclerView;
+    List<FoodType> mlistType;
+    String a = "";
+    FoodTypeAdapter foodTypeAdapter;
     Handler handler = new Handler();
     Runnable runnable = new Runnable() {
         @Override
@@ -56,6 +67,8 @@ public class HomeFragment extends Fragment {
         init();
         actionViewPage();
         typeProduct();
+        ActionBar actionBar = ((MainActivity) getActivity()).getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
         return mView;
 
     }
@@ -63,12 +76,13 @@ public class HomeFragment extends Fragment {
         viewPager = mView.findViewById(R.id.view_pager);
         circleIndicator = mView.findViewById(R.id.circle_indicator);
         recyclerView = mView.findViewById(R.id.rcv_mhc);
-
+        mlistType = new ArrayList<>();
     }
     private void typeProduct() {
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(mainActivity,2);
         recyclerView.setLayoutManager(layoutManager);
-        FoodTypeAdapter productTypeAdapter = new FoodTypeAdapter(getListType(), (FoodType productType) -> {
+        getList();
+         foodTypeAdapter = new FoodTypeAdapter(getContext(),mlistType, (FoodType productType) -> {
             //Todo: open example fragment
             NavController navController = NavHostFragment.findNavController(HomeFragment.this);
 
@@ -77,18 +91,8 @@ public class HomeFragment extends Fragment {
             navController.navigate(R.id.action_home_to_exampleFragment, bundle);
 
         });
-        recyclerView.setAdapter(productTypeAdapter);
-    }
+        recyclerView.setAdapter(foodTypeAdapter);
 
-    private List<FoodType> getListType() {
-        List<FoodType> list = new ArrayList<>();
-        list.add(new FoodType(1,"South Indian 1",R.drawable.picture_3));
-        list.add(new FoodType(2,"South Indian 2",R.drawable.picture_3));
-        list.add(new FoodType(3,"South Indian 3",R.drawable.picture_3));
-        list.add(new FoodType(4,"South Indian 4",R.drawable.picture_3));
-        list.add(new FoodType(5,"South Indian 5",R.drawable.picture_3));
-        list.add(new FoodType(6,"South Indian 6",R.drawable.picture_3));
-        return list;
     }
 
     private void actionViewPage() {
@@ -122,6 +126,28 @@ public class HomeFragment extends Fragment {
         list.add(new Photo(R.drawable.picture_4));
 
         return list;
+    }
+    private void getList() {
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Foodtype");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                   FoodType foodType = dataSnapshot.getValue(FoodType.class);
+                    mlistType.add(foodType);
+                }
+                foodTypeAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(mainActivity, "k thanh công", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
     }
     private boolean isConnected (Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
