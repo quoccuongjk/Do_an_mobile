@@ -19,8 +19,7 @@ public class FoodDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_detail);
 
-        Intent intent = getIntent();
-        Food food = (Food) intent.getSerializableExtra("Food");
+
 
 
 

@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.FoodDetailActivity;
+import com.example.myapplication.Profile;
 import com.example.myapplication.R;
 import com.example.myapplication.adapter.FoodAdapter;
 import com.example.myapplication.adapter.FoodCartAdapter;
@@ -61,7 +62,7 @@ public class FoodFragment extends Fragment {
         foodAdapter = new FoodAdapter(getContext(), mlist, new FoodAdapter.IClick() {
             @Override
             public void onClick(Food food) {
-                Intent intent = new Intent(getContext(), FoodDetailActivity.class);
+                Intent intent = new Intent(getContext(), Profile.class);
                 intent.putExtra("Food",food);
                 startActivity(intent);
             }
