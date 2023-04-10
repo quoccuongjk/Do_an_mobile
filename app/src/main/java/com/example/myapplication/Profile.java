@@ -1,22 +1,33 @@
 package com.example.myapplication;
 
 import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myapplication.fragment.CartFragment;
 import com.example.myapplication.model.Details;
 import com.example.myapplication.model.Food;
+import com.example.myapplication.model.FoodType;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 public class Profile extends AppCompatActivity {
@@ -81,15 +92,24 @@ public class Profile extends AppCompatActivity {
         button_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FirebaseDatabase  database = FirebaseDatabase.getInstance();
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference myRef = database.getReference("Details");
-                DatabaseReference myRefUser = database.getReference("User");
-                int UserId = Integer.parseInt(mAuth.getCurrentUser().getUid());
-                int FoodId = food.getId();
-                Details details = new Details(UserId,FoodId,count);
-                Intent intent = new Intent(getApplicationContext(), CartFragment.class);
 
-                startActivity(intent);
+                //String gmailUser = (mAuth.getCurrentUser().getEmail());
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                String gmailUser = user.getEmail();
+
+                Log.d("CUONGVIPPRO",gmailUser);
+                int FoodId = food.getId();
+                Details details = new Details("lekhoa734@gmail.com",FoodId,count);
+                myRef.child("4").setValue(details, new DatabaseReference.CompletionListener() {
+                    @Override
+                    public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                        Toast.makeText(getApplicationContext(),"Thêm vào giỏ hàng thành công",Toast.LENGTH_SHORT).show();
+                    }
+                });
+//                Intent intent = new Intent(getApplicationContext(), CartFragment.class);
+//                startActivity(intent);
 
             }
         });
