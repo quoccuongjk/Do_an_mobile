@@ -57,4 +57,5 @@ public class CartFragment extends Fragment {
         list.add(new FoodCart(1,"South Indian",R.drawable.picture_3,150));
         return list;
     }
+
 }
