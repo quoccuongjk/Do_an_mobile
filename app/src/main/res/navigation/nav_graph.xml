@@ -37,4 +37,8 @@
         tools:layout="@layout/fragment_food">
 
     </fragment>
+    <fragment android:id="@+id/user"
+        android:name="com.example.myapplication.fragment.UserFragment"
+        android:label="Cart"
+        tools:layout="@layout/fragment_user"/>
 </navigation>

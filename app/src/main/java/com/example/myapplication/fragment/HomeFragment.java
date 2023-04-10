@@ -16,6 +16,8 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.os.Handler;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -67,11 +69,10 @@ public class HomeFragment extends Fragment {
         init();
         actionViewPage();
         typeProduct();
-        ActionBar actionBar = ((MainActivity) getActivity()).getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
         return mView;
 
     }
+
     private void init() {
         viewPager = mView.findViewById(R.id.view_pager);
         circleIndicator = mView.findViewById(R.id.circle_indicator);

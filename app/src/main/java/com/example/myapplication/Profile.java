@@ -1,10 +1,13 @@
 package com.example.myapplication;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -15,7 +18,7 @@ import com.example.myapplication.model.Food;
 import com.squareup.picasso.Picasso;
 
 public class Profile extends AppCompatActivity {
-    Button button;
+    Button button_add;
     int count;
     ImageView imageView1 , imageView2,imageView3, img_food;
     TextView textView1,textView2,textView3,tv_name, tv_mota;
@@ -26,7 +29,7 @@ public class Profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         count=0;
         setContentView(R.layout.activity_profile);
-        button = findViewById(R.id.ok_add);
+        button_add = findViewById(R.id.ok_add);
         textView3=findViewById(R.id.count_profile);
         textView2 = findViewById(R.id.price_profile);
         textView1 = findViewById(R.id.tong_profile);
@@ -43,6 +46,7 @@ public class Profile extends AppCompatActivity {
         textView2.setText(food.getPrice()+"");
         Picasso.with(this).load(food.getImage()).into(img_food);
         tv_mota.setText(food.getDescribe());
+
 
         imageView3.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,14 +75,17 @@ public class Profile extends AppCompatActivity {
                     }
                 }
             });
-        button.setOnClickListener(new View.OnClickListener() {
+        button_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), CartFragment.class);
                 startActivity(intent);
+
             }
         });
     }
+
+
 
     private int TongTien() {
         return Integer.parseInt(textView2.getText().toString())*count;
