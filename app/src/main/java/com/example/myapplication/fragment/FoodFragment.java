@@ -3,10 +3,7 @@ package com.example.myapplication.fragment;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 
-import android.content.Context;
-
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,13 +14,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.myapplication.FoodDetailActivity;
+import com.example.myapplication.Profile;
 import com.example.myapplication.R;
 import com.example.myapplication.adapter.FoodAdapter;
-import com.example.myapplication.adapter.FoodCartAdapter;
 import com.example.myapplication.model.Food;
-import com.example.myapplication.model.FoodCart;
-import com.example.myapplication.model.FoodType;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -61,7 +55,7 @@ public class FoodFragment extends Fragment {
         foodAdapter = new FoodAdapter(getContext(), mlist, new FoodAdapter.IClick() {
             @Override
             public void onClick(Food food) {
-                Intent intent = new Intent(getContext(), FoodDetailActivity.class);
+                Intent intent = new Intent(getContext(), Profile.class);
                 intent.putExtra("Food",food);
                 startActivity(intent);
             }

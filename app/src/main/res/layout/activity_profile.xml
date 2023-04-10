@@ -158,7 +158,14 @@
             android:id="@+id/view_user"
             android:layout_marginTop="15dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></ScrollView>
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/tv_mota"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="20sp"
+                android:text="aaaa"/>
+        </ScrollView>
     </LinearLayout>
 
     <Button
