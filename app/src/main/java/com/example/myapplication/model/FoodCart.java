@@ -12,7 +12,6 @@ public class FoodCart {
         this.image = image;
         this.price = price;
     }
-
     public int getId() {
         return id;
     }

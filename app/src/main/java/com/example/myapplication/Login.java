@@ -85,10 +85,9 @@ public class Login extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 progressBar.setVisibility(View.GONE);
                                 if (task.isSuccessful()) {
-//                                    SharedPreferences preferences = getSharedPreferences("email_log", Context.MODE_PRIVATE);
-//                                    SharedPreferences.Editor editor = preferences.edit();
-//                                    editor.putString("email", editTextEmail.getText().toString());
-//                                    editor.apply();
+                                    SharedPreferences.Editor editor = getSharedPreferences("MY_PREFS_NAME", MODE_PRIVATE).edit();
+                                    editor.putString("Email",editTextEmail.getText().toString());
+                                    editor.apply();
                                     email_profile=editTextEmail.getText().toString();
                                     Toast.makeText(Login.this,"Đăng nhập thành công",
                                             Toast.LENGTH_SHORT).show();

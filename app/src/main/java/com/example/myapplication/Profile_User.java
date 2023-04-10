@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -41,7 +42,7 @@ public class Profile_User extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_user);
-        value1=Login.email_profile;
+//        value1=Login.email_profile;
         imageView= findViewById(R.id.back_user);
         textView1=findViewById(R.id.name_user);
         textView5=findViewById(R.id.update_profile);
@@ -97,6 +98,8 @@ public class Profile_User extends AppCompatActivity {
     }
 
     private void GetData() {
+        SharedPreferences prefs = getSharedPreferences("MY_PREFS_NAME", MODE_PRIVATE);
+        value1 = prefs.getString("Email", "default value");
         textView5.setVisibility(View.INVISIBLE);
         ListUser=new ArrayList<>();
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
@@ -125,7 +128,7 @@ public class Profile_User extends AppCompatActivity {
                         return user;
                     }
                 }
-                return new User(0,"Address","Email","Name","Phone");
+                return new User(0,"Edit Pls!",value1,"Your Name","Edit Pls!");
             }
         });
     }
