@@ -17,11 +17,11 @@
             android:layout_height="wrap_content">
             <EditText
                 android:id="@+id/edittext"
-                android:hint="search any food here"
+                android:hint="Search"
                 android:padding="10dp"
                 android:layout_marginTop="6dp"
                 android:textColor="@color/black"
-                android:textColorHint="@color/black"
+
                 android:background="@drawable/bg_search"
                 android:textStyle="bold"
                 android:textSize="15sp"

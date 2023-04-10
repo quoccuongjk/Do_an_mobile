@@ -5,58 +5,58 @@
     android:layout_height="match_parent"
     tools:context=".fragment.FoodDetailFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".Profile"
         android:id="@+id/profile_con">
+
+        <ImageView
+            android:id="@+id/image_food_detail"
+            android:src="@drawable/picture_3"
+            android:layout_width="match_parent"
+            android:scaleType="fitXY"
+            android:layout_height="280dp"/>
+
         <LinearLayout
             android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="480dp"
             android:layout_marginTop="10dp"
-            android:orientation="horizontal"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="0dp">
+            android:orientation="vertical"
+            android:padding="15dp"
+            android:background="@drawable/bg_linearlayout"
 
-            <ImageView
-                android:id="@+id/image_food_detail"
-                android:layout_width="180dp"
-                android:layout_height="180dp"></ImageView>
+            android:layout_alignParentBottom="true"
+            tools:layout_editor_absoluteX="0dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
+                android:layout_height="wrap_content">
                 <TextView
                     android:id="@+id/name_food_detail"
-                    android:layout_width="match_parent"
+                    android:layout_width="270dp"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="Name"></TextView>
-                <LinearLayout
-                    android:layout_width="match_parent"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:text="Food"/>
+                <TextView
+                    android:id="@+id/price_food_detail"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="20dp"
-                        android:text="Giá: ">
-                    </TextView>
-                    <TextView
-                        android:id="@+id/price_food_detail"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="20dp"
-                        android:text="10">
-                    </TextView>
-                </LinearLayout>
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#ED1808"
+                    android:text="$10"/>
+
+            </LinearLayout>
+
+
+
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -69,14 +69,21 @@
                         android:layout_gravity="center"
                         android:layout_marginLeft="10dp"
                         android:text="Số Lượng: "></TextView>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="5dp"
+                        android:layout_marginLeft="30dp">
+                        <ImageView
+                            android:background="#BFACE2"
+                            android:id="@+id/sub_food"
+                            android:layout_width="25dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
 
-                    <ImageView
-                        android:id="@+id/sub_food"
-                        android:layout_width="20dp"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="30dp"
-                        android:src="@drawable/subb_profile"></ImageView>
+                            android:src="@drawable/subb_profile"></ImageView>
+                    </androidx.cardview.widget.CardView>
+
 
                     <TextView
                         android:id="@+id/count_food_detail"
@@ -84,16 +91,25 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
                         android:text="0"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
                         android:textAlignment="center"
                         android:textSize="20dp"></TextView>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="5dp"
+                        android:layout_marginLeft="20dp">
+                        <ImageView
+                            android:id="@+id/add_food"
+                            android:layout_width="25dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
 
-                    <ImageView
-                        android:id="@+id/add_food"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="20dp"
-                        android:src="@drawable/add_profile"></ImageView>
+                            android:background="#645CBB"
+                            android:src="@drawable/add_profile"></ImageView>
+                    </androidx.cardview.widget.CardView>
+
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -115,28 +131,25 @@
                         android:text="demo tong">
                     </TextView>
                 </LinearLayout>
-            </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
-            android:layout_height="420dp"
+            android:layout_height="290dp"
             android:orientation="vertical"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
             tools:ignore="MissingConstraints"
+            android:layout_above="@+id/add_cart"
             tools:layout_editor_absoluteX="0dp">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:text="Mô tả sản phẩm"></TextView>
 
             <ScrollView
                 android:id="@+id/view_user"
                 android:layout_marginTop="15dp"
+                android:padding="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <TextView
@@ -148,15 +161,23 @@
             </ScrollView>
         </LinearLayout>
 
-        <Button
+        <TextView
             android:id="@+id/add_cart"
             android:layout_width="match_parent"
             android:layout_height="55dp"
-            android:backgroundTint="#499B54"
+            android:background="@drawable/bg_button"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="@color/white"
             android:text="Thêm Vào Giỏ Hàng"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_alignParentBottom="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-            tools:layout_editor_absoluteX="0dp"></Button>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            />
+    </RelativeLayout>
 
 </FrameLayout>

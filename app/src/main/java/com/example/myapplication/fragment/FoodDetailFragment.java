@@ -32,7 +32,7 @@ import com.squareup.picasso.Picasso;
 
 
 public class FoodDetailFragment extends Fragment {
-    Button button_add_cart;
+    TextView button_add_cart;
     int count;
     FirebaseAuth mAuth;
     ImageView imageView1 , img_add,img_sub, img_food;
@@ -50,7 +50,7 @@ public class FoodDetailFragment extends Fragment {
         return mView;
     }
     private void init() {
-        button_add_cart = mView.findViewById(R.id.ok_add);
+        button_add_cart = mView.findViewById(R.id.add_cart);
         tv_name=mView.findViewById(R.id.name_food_detail);
         tv_price = mView.findViewById(R.id.price_food_detail);
         tv_sum_price = mView.findViewById(R.id.sum_price);
@@ -95,29 +95,31 @@ public class FoodDetailFragment extends Fragment {
         });
     }
     private void addCart() {
-//        button_add_cart.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                FirebaseDatabase database = FirebaseDatabase.getInstance();
-//                DatabaseReference myRef = database.getReference("Details");
-//
-//                //String gmailUser = (mAuth.getCurrentUser().getEmail());
-//                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-//                String gmailUser = user.getEmail();
-//
-//                Log.d("CUONGVIPPRO",gmailUser);
-//                int FoodId = food.getId();
-//                Details details = new Details("lekhoa734@gmail.com",FoodId,count);
-//                myRef.child("4").setValue(details, new DatabaseReference.CompletionListener() {
-//                    @Override
-//                    public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
-//                        Toast.makeText(getContext(),"Thêm vào giỏ hàng thành công",Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-//                Intent intent = new Intent(getApplicationContext(), CartFragment.class);
-//                startActivity(intent);
-//            }
-//        });
+
+
+        button_add_cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference myRef = database.getReference("Details");
+
+                //String gmailUser = (mAuth.getCurrentUser().getEmail());
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                String gmailUser = user.getEmail();
+
+
+                int FoodId = food.getId();
+                Details details = new Details("aaa",FoodId,count);
+                myRef.child("9").setValue(details, new DatabaseReference.CompletionListener() {
+                    @Override
+                    public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                        Toast.makeText(getContext(),"Thêm vào giỏ hàng thành công",Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+            }
+        });
+
     }
 
     private int TongTien() {

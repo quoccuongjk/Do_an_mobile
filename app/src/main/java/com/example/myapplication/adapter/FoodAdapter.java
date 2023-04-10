@@ -48,7 +48,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
     public void onBindViewHolder(@NonNull FoodViewHolder holder, int position) {
         Food food = list.get(position);
         holder.tvName.setText(food.getName());
-
+        holder.tvPrice.setText("Price : "+food.getPrice());
         Picasso.with(context).load(food.getImage()).into(holder.imageView);
         holder.layout.setOnClickListener(view -> iClick.onClick(food));
 
@@ -66,12 +66,13 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
 
     public class FoodViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
-        TextView tvName;
+        TextView tvName,tvPrice;
         LinearLayout layout;
         public FoodViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.iv_food);
             tvName = itemView.findViewById(R.id.tv_name_food);
+            tvPrice = itemView.findViewById(R.id.tv_price_food);
             layout = itemView.findViewById(R.id.linear_food);
         }
     }
