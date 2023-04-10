@@ -101,7 +101,7 @@ public class Profile extends AppCompatActivity {
 
                 Log.d("CUONGVIPPRO",gmailUser);
                 int FoodId = food.getId();
-                Details details = new Details(1,2,"asds",2,3);
+                Details details = new Details(1,2,"asds",2,3,"abc");
                 myRef.child("4").setValue(details, new DatabaseReference.CompletionListener() {
                     @Override
                     public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {

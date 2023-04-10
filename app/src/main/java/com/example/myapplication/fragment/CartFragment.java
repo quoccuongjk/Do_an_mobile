@@ -60,16 +60,13 @@ public class CartFragment extends Fragment {
     private void foodCart() {
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(mainActivity,1);
         recyclerView.setLayoutManager(layoutManager);
-        FoodCartAdapter foodCartAdapter = new FoodCartAdapter(getList());
+        FoodCartAdapter foodCartAdapter = new FoodCartAdapter(getContext(),getList());
         recyclerView.setAdapter(foodCartAdapter);
     }
 
-    private List<FoodCart> getList() {
-        List<FoodCart> list = new ArrayList<>();
-        list.add(new FoodCart(1,"South Indian",R.drawable.picture_3,150));
-        list.add(new FoodCart(1,"South Indian",R.drawable.picture_3,150));
-        list.add(new FoodCart(1,"South Indian",R.drawable.picture_3,150));
-        list.add(new FoodCart(1,"South Indian",R.drawable.picture_3,150));
+    private List<Details> getList() {
+        List<Details> list = new ArrayList<>();
+        list.add(new Details(1,2,"dsads",1221321,7,"https://static.toiimg.com/thumb/53110049.cms?width=1200&height=900"));
         return list;
     }
 

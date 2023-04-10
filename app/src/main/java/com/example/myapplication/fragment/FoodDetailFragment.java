@@ -135,7 +135,7 @@ public class FoodDetailFragment extends Fragment {
                 });
                 Log.d("UserId",String.valueOf(UserId));
                 int FoodId = food.getId();
-                Details details = new Details(UserId,FoodId,food.getName(),food.getPrice(),count);
+                Details details = new Details(UserId,FoodId,food.getName(),food.getPrice(),count,food.getImage());
                 String child = String.valueOf(UserId);
                 myRef.child(child).setValue(details, new DatabaseReference.CompletionListener() {
                     @Override
