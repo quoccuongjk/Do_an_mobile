@@ -14,12 +14,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.myapplication.fragment.CartFragment;
+import com.example.myapplication.model.Details;
 import com.example.myapplication.model.Food;
+import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
 
 public class Profile extends AppCompatActivity {
     Button button_add;
     int count;
+    FirebaseAuth mAuth;
     ImageView imageView1 , imageView2,imageView3, img_food;
     TextView textView1,textView2,textView3,tv_name, tv_mota;
     Food food;
@@ -78,7 +81,14 @@ public class Profile extends AppCompatActivity {
         button_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                FirebaseDatabase  database = FirebaseDatabase.getInstance();
+                DatabaseReference myRef = database.getReference("Details");
+                DatabaseReference myRefUser = database.getReference("User");
+                int UserId = Integer.parseInt(mAuth.getCurrentUser().getUid());
+                int FoodId = food.getId();
+                Details details = new Details(UserId,FoodId,count);
                 Intent intent = new Intent(getApplicationContext(), CartFragment.class);
+
                 startActivity(intent);
 
             }
