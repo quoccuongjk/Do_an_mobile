@@ -135,7 +135,7 @@ public class FoodDetailFragment extends Fragment {
                 });
                 Log.d("UserId",String.valueOf(UserId));
                 int FoodId = food.getId();
-                Details details = new Details(UserId,FoodId,count);
+                Details details = new Details(UserId,FoodId,food.getName(),food.getPrice(),count);
                 String child = String.valueOf(UserId);
                 myRef.child(child).setValue(details, new DatabaseReference.CompletionListener() {
                     @Override
@@ -143,8 +143,6 @@ public class FoodDetailFragment extends Fragment {
                         Toast.makeText(getContext(),"Thêm vào giỏ hàng thành công",Toast.LENGTH_SHORT).show();
                     }
                 });
-////                Intent intent = new Intent(getApplicationContext(), CartFragment.class);
-////                startActivity(intent);
             }
         });
 

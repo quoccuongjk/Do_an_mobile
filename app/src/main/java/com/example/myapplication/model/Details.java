@@ -4,7 +4,7 @@ public class Details {
     private int Id_User ;
     private  int Id_Food;
     private String Name_Food;
-    private int Price;
+    private int Price_Food;
     private int Cunt_Food;
 
     public Details() {
@@ -14,7 +14,7 @@ public class Details {
         Id_User = id_User;
         Id_Food = id_Food;
         Name_Food = name_Food;
-        Price = price;
+        Price_Food = price;
         Cunt_Food = cunt_Food;
     }
 
@@ -43,11 +43,11 @@ public class Details {
     }
 
     public int getPrice() {
-        return Price;
+        return Price_Food;
     }
 
     public void setPrice(int price) {
-        Price = price;
+        Price_Food = price;
     }
 
     public int getCunt_Food() {
