@@ -78,8 +78,16 @@
                 android:inputType="text">
             </EditText>
         </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            android:id="@+id/update_pay"
+            android:textAlignment="center"
+            android:text="Thay đổi"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </TextView>
         <LinearLayout
-            android:layout_marginTop="75dp"
+            android:layout_marginTop="65dp"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
