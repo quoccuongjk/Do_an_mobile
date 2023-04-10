@@ -89,30 +89,30 @@ public class Profile extends AppCompatActivity {
                     }
                 }
             });
-        button_add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference myRef = database.getReference("Details");
-
-                //String gmailUser = (mAuth.getCurrentUser().getEmail());
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                String gmailUser = user.getEmail();
-
-                Log.d("CUONGVIPPRO",gmailUser);
-                int FoodId = food.getId();
-                Details details = new Details("lekhoa734@gmail.com",FoodId,count);
-                myRef.child("4").setValue(details, new DatabaseReference.CompletionListener() {
-                    @Override
-                    public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
-                        Toast.makeText(getApplicationContext(),"Thêm vào giỏ hàng thành công",Toast.LENGTH_SHORT).show();
-                    }
-                });
-//                Intent intent = new Intent(getApplicationContext(), CartFragment.class);
-//                startActivity(intent);
-
-            }
-        });
+//        button_add.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                FirebaseDatabase database = FirebaseDatabase.getInstance();
+//                DatabaseReference myRef = database.getReference("Details");
+//
+//                //String gmailUser = (mAuth.getCurrentUser().getEmail());
+//                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//                String gmailUser = user.getEmail();
+//
+//                Log.d("CUONGVIPPRO",gmailUser);
+//                int FoodId = food.getId();
+//                Details details = new Details("lekhoa734@gmail.com",FoodId,count);
+//                myRef.child("4").setValue(details, new DatabaseReference.CompletionListener() {
+//                    @Override
+//                    public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+//                        Toast.makeText(getApplicationContext(),"Thêm vào giỏ hàng thành công",Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+////                Intent intent = new Intent(getApplicationContext(), CartFragment.class);
+////                startActivity(intent);
+//
+//            }
+//        });
     }
 
 

@@ -3,11 +3,18 @@ package com.example.myapplication.model;
 public class Details {
     private int Id_User ;
     private  int Id_Food;
+    private String Name_Food;
+    private int Price;
     private int Cunt_Food;
 
-    public Details(int id_User, int id_Food, int cunt_Food) {
-        Id_User=id_User;
+    public Details() {
+    }
+
+    public Details(int id_User, int id_Food, String name_Food, int price, int cunt_Food) {
+        Id_User = id_User;
         Id_Food = id_Food;
+        Name_Food = name_Food;
+        Price = price;
         Cunt_Food = cunt_Food;
     }
 
@@ -25,6 +32,22 @@ public class Details {
 
     public void setId_Food(int id_Food) {
         Id_Food = id_Food;
+    }
+
+    public String getName_Food() {
+        return Name_Food;
+    }
+
+    public void setName_Food(String name_Food) {
+        Name_Food = name_Food;
+    }
+
+    public int getPrice() {
+        return Price;
+    }
+
+    public void setPrice(int price) {
+        Price = price;
     }
 
     public int getCunt_Food() {

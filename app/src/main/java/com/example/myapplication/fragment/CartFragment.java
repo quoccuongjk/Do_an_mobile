@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,12 +13,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myapplication.Profile;
+import com.example.myapplication.model.Details;
+import com.example.myapplication.model.Food;
 import com.example.myapplication.model.FoodCart;
 import com.example.myapplication.adapter.FoodCartAdapter;
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +38,9 @@ public class CartFragment extends Fragment {
     View mView;
     RecyclerView recyclerView;
     TextView textView;
+    List<Food> foodList;
+    List<Details> detailsList,detailsList2;
+    Details details;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,6 +48,8 @@ public class CartFragment extends Fragment {
         mView = inflater.inflate(R.layout.fragment_cart, container, false);
         mainActivity = (MainActivity) getActivity();
         init();
+        detailsList2=new ArrayList<>();
+        Toast.makeText(mainActivity, Update()+"", Toast.LENGTH_SHORT).show();
         foodCart();
         return mView;
     }
@@ -58,4 +73,24 @@ public class CartFragment extends Fragment {
         return list;
     }
 
+    private int Update() {
+        List<Details> list=new ArrayList<>();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Details");
+        DatabaseReference myRef2 = myRef.child("1");
+        myRef2.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    details = dataSnapshot.getValue(Details.class);
+                    list.add(details);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getContext(), "k thanh công", Toast.LENGTH_SHORT).show();
+            }
+        });return list.size();
+}
 }
