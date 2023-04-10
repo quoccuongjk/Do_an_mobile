@@ -1,5 +1,6 @@
 package com.example.myapplication.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,15 +11,19 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
+import com.example.myapplication.model.Details;
 import com.example.myapplication.model.FoodCart;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class FoodCartAdapter extends RecyclerView.Adapter<FoodCartAdapter.FoodCartViewHolder> {
-    private List<FoodCart> list;
+    private List<Details> list;
+    private Context context;
 
-    public FoodCartAdapter(List<FoodCart> list) {
+    public FoodCartAdapter(Context context,List<Details> list) {
         this.list = list;
+        this.context = context;
     }
 
     @NonNull
@@ -30,11 +35,10 @@ public class FoodCartAdapter extends RecyclerView.Adapter<FoodCartAdapter.FoodCa
 
     @Override
     public void onBindViewHolder(@NonNull FoodCartViewHolder holder, int position) {
-        FoodCart foodCart = list.get(position);
-        holder.tvName.setText(foodCart.getName());
-        holder.tvPrice.setText("Price : "+foodCart.getPrice());
-        holder.imageView.setImageResource(foodCart.getImage());
-
+        Details details = list.get(position);
+        holder.tvName.setText(details.getName_Food());
+        holder.tvPrice.setText("Price : "+details.getPrice_Food());
+        Picasso.with(context).load(details.getImage_Food()).into(holder.imageView);
     }
 
     @Override

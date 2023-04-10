@@ -23,22 +23,35 @@ import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.model.Details;
 import com.example.myapplication.model.Food;
+import com.example.myapplication.model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.Locale;
 
 
 public class FoodDetailFragment extends Fragment {
+<<<<<<< HEAD
     TextView button_add_cart;
+=======
+    int UserId;
+    Button button_add_cart;
+>>>>>>> 7f019f9aabeac7d71dbb377ff9b8492da6aad5c8
     int count;
     FirebaseAuth mAuth;
     ImageView imageView1 , img_add,img_sub, img_food;
     TextView tv_price,tv_sum_price,tv_count,tv_name, tv_mota;
     Food food;
-
+    User user1;
+    ArrayList<User> ListUser;
+    String gmail;
     View mView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,7 +59,7 @@ public class FoodDetailFragment extends Fragment {
         mView = inflater.inflate(R.layout.fragment_food_detail, container, false);
         init();
         onClickSubAdd();
-        addCart();
+//        addCart();
         return mView;
     }
     private void init() {
@@ -58,11 +71,12 @@ public class FoodDetailFragment extends Fragment {
         tv_mota = mView.findViewById(R.id.tv_mota);
         img_sub = mView.findViewById(R.id.sub_food);
         img_add = mView.findViewById(R.id.add_food);
+
         img_food = mView.findViewById(R.id.image_food_detail);
         count = 1;
         tv_count.setText(count+"");
-        //imageView2.setVisibility(imageView2.INVISIBLE);
-        //img_food = findViewById(R.id.image_profile);
+//        imageView2.setVisibility(imageView2.INVISIBLE);
+//        img_food = findViewById(R.id.image_profile);
         Bundle bundle = getArguments();
 
         food = (Food) bundle.get("Food");//
@@ -93,15 +107,20 @@ public class FoodDetailFragment extends Fragment {
                 }
             }
         });
+
     }
     private void addCart() {
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 7f019f9aabeac7d71dbb377ff9b8492da6aad5c8
         button_add_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference myRef = database.getReference("Details");
+<<<<<<< HEAD
 
                 //String gmailUser = (mAuth.getCurrentUser().getEmail());
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -111,18 +130,60 @@ public class FoodDetailFragment extends Fragment {
                 int FoodId = food.getId();
                 Details details = new Details("aaa",FoodId,count);
                 myRef.child("9").setValue(details, new DatabaseReference.CompletionListener() {
+=======
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                String gmailUser = user.getEmail();
+                gmail = gmailUser;
+                Log.d("123",gmailUser);
+                ListUser=new ArrayList<>();
+                FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+                DatabaseReference databaseReference = firebaseDatabase.getReference("User");
+
+                databaseReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                            user1 = dataSnapshot.getValue(User.class);
+                            ListUser.add(user1);
+                        }
+                        UserId = GetUser(ListUser,gmail).getId();
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Toast.makeText(getContext(), "Fail", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                Log.d("UserId",String.valueOf(UserId));
+                int FoodId = food.getId();
+                Details details = new Details(UserId,FoodId,food.getName(),food.getPrice(),count,food.getImage());
+                String child = String.valueOf(UserId);
+                myRef.child(child).setValue(details, new DatabaseReference.CompletionListener() {
+>>>>>>> 7f019f9aabeac7d71dbb377ff9b8492da6aad5c8
                     @Override
                     public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
                         Toast.makeText(getContext(),"Thêm vào giỏ hàng thành công",Toast.LENGTH_SHORT).show();
                     }
                 });
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7f019f9aabeac7d71dbb377ff9b8492da6aad5c8
             }
         });
 
     }
 
+
     private int TongTien() {
         return Integer.parseInt(tv_price.getText().toString())*count;
+    }
+    public User GetUser(ArrayList<User> arrayList, String s){
+        for (User user : arrayList) {
+            if (user.getEmail().toLowerCase(Locale.ROOT).trim().equals(gmail.trim()))
+            {
+                return user;
+            }
+        }
+        return new User(0,"Edit Pls!",gmail,"Your Name","Edit Pls!");
     }
 }
