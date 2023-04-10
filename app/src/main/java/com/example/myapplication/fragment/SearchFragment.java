@@ -5,6 +5,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -105,9 +107,15 @@ public class SearchFragment extends Fragment {
         foodAdapter = new FoodAdapter(getContext(), mlist, new FoodAdapter.IClick() {
             @Override
             public void onClick(Food food) {
-                Intent intent = new Intent(getContext(), Profile.class);
-                intent.putExtra("Food",food);
-                startActivity(intent);
+//                Intent intent = new Intent(getContext(), Profile.class);
+//                intent.putExtra("Food",food);
+//                startActivity(intent);
+                NavController navController = NavHostFragment.findNavController(SearchFragment.this);
+
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("Food",food);
+                bundle.putInt("food_id", food.getId());
+                navController.navigate(R.id.action_search_to_fooddetail, bundle);
             }
         });
         recyclerView.setAdapter(foodAdapter);

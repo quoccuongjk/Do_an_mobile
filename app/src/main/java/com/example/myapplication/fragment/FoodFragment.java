@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -55,9 +57,17 @@ public class FoodFragment extends Fragment {
         foodAdapter = new FoodAdapter(getContext(), mlist, new FoodAdapter.IClick() {
             @Override
             public void onClick(Food food) {
-                Intent intent = new Intent(getContext(), Profile.class);
-                intent.putExtra("Food",food);
-                startActivity(intent);
+//                Intent intent = new Intent(getContext(), Profile.class);
+//                intent.putExtra("Food",food);
+//                Bundle bundle = getArguments();
+//                foodTypeId = bundle.getInt("product_id");
+//                startActivity(intent);
+                NavController navController = NavHostFragment.findNavController(FoodFragment.this);
+
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("Food",food);
+                bundle.putInt("food_id", food.getId());
+                navController.navigate(R.id.action_food_to_fooddetail, bundle);
             }
         });
         recyclerView.setAdapter(foodAdapter);

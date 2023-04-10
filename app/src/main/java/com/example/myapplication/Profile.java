@@ -55,7 +55,7 @@ public class Profile extends AppCompatActivity {
         imageView2.setVisibility(imageView2.INVISIBLE);
         img_food = findViewById(R.id.image_profile);
         Intent intent = getIntent();
-        food = (Food) intent.getSerializableExtra("Food");
+        food = (Food) intent.getSerializableExtra("Food");//////
         tv_name.setText(food.getName());
         textView2.setText(food.getPrice()+"");
         Picasso.with(this).load(food.getImage()).into(img_food);

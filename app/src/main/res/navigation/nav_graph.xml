@@ -22,9 +22,9 @@
         android:label="Search"
         tools:layout="@layout/fragment_search">
 
-        <!--        <action-->
-        <!--            android:id="@+id/action_SecondFragment_to_FirstFragment"-->
-        <!--            app:destination="@id/FirstFragment" />-->
+        <action
+            android:id="@+id/action_search_to_fooddetail"
+            app:destination="@id/food_detail" />
     </fragment>
     <fragment android:id="@+id/cart"
         android:name="com.example.myapplication.fragment.CartFragment"
@@ -35,10 +35,18 @@
         android:name="com.example.myapplication.fragment.FoodFragment"
         android:label="Food"
         tools:layout="@layout/fragment_food">
-
+        <action
+            android:id="@+id/action_food_to_fooddetail"
+            app:destination="@id/food_detail" />
     </fragment>
     <fragment android:id="@+id/user"
         android:name="com.example.myapplication.fragment.UserFragment"
         android:label="Cart"
         tools:layout="@layout/fragment_user"/>
+    <fragment android:id="@+id/food_detail"
+        android:name="com.example.myapplication.fragment.FoodDetailFragment"
+        android:label="Food Detail"
+        tools:layout="@layout/fragment_food_detail">
+
+    </fragment>
 </navigation>
