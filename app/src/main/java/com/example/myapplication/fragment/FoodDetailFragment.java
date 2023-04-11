@@ -84,6 +84,7 @@ public class FoodDetailFragment extends Fragment {
         tv_price.setText(food.getPrice()+"");
         Picasso.with(getContext()).load(food.getImage()).into(img_food);
         tv_mota.setText(food.getDescribe());
+        tv_sum_price.setText(food.getPrice()+"");
     }
     private void onClickSubAdd(){
         img_add.setOnClickListener(new View.OnClickListener() {

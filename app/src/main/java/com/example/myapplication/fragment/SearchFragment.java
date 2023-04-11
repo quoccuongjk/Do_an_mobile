@@ -4,14 +4,18 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +26,11 @@ import android.widget.Toast;
 import com.example.myapplication.Profile;
 import com.example.myapplication.R;
 import com.example.myapplication.adapter.FoodAdapter;
+import com.example.myapplication.model.Details;
 import com.example.myapplication.model.Food;
+import com.example.myapplication.model.User;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,6 +40,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class SearchFragment extends Fragment {
 
@@ -40,6 +49,12 @@ public class SearchFragment extends Fragment {
     FoodAdapter foodAdapter;
     List<Food> mlist;
     EditText editText;
+    int foodTypeId;
+    String UserIdString;
+    ArrayList<User> ListUser;
+    String gmail;
+    User user1;
+    int UserId;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -117,10 +132,65 @@ public class SearchFragment extends Fragment {
                 bundle.putInt("food_id", food.getId());
                 navController.navigate(R.id.action_search_to_fooddetail, bundle);
             }
+
+            @Override
+            public void onClickIcon(Food food) {
+                UserIdString = "123";
+                ListUser = new ArrayList<>();
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference myRef = database.getReference("Details");
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                String gmailUser = user.getEmail();
+                gmail = gmailUser;
+                DatabaseReference databaseReference = database.getReference("User");
+                databaseReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                            user1 = dataSnapshot.getValue(User.class);
+                            ListUser.add(user1);
+                        }
+                        UserId = GetUser(ListUser,gmail).getId();
+                        UserIdString = String.valueOf(UserId);
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Toast.makeText(getContext(), "Fail", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                int FoodId = food.getId();
+                final String[] child = {""};
+                final Handler handler = new Handler(Looper.getMainLooper());
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Details details = new Details(UserId,FoodId,food.getName(),food.getPrice(),1,food.getImage());
+                        child[0] = String.valueOf(UserId);
+                        Log.v("UserId3",UserIdString);
+                        myRef.child(child[0]).child(String.valueOf(FoodId)).setValue(details, new DatabaseReference.CompletionListener() {
+                            @Override
+                            public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                                Toast.makeText(getContext(),"Thêm vào giỏ hàng thành công",Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        //Details details = new Details(UserId,FoodId,food.getName(),food.getPrice(),count,food.getImage());
+                    }
+                },1000);
+
+
+            }
         });
         recyclerView.setAdapter(foodAdapter);
     }
-
+    public User GetUser(ArrayList<User> arrayList, String s){
+        for (User user : arrayList) {
+            if (user.getEmail().toLowerCase(Locale.ROOT).trim().equals(gmail.trim()))
+            {
+                return user;
+            }
+        }
+        return new User(0,"Edit Pls!",gmail,"Your Name","Edit Pls!");
+    }
 
     private void getList() {
 

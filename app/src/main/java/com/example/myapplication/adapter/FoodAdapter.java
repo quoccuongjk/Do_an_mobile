@@ -29,6 +29,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
     private IClick iClick;
     public interface IClick{
         void onClick(Food food);
+        void onClickIcon(Food food);
     }
 
     public FoodAdapter(Context context, List<Food> list, IClick iClick) {
@@ -50,7 +51,9 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
         holder.tvName.setText(food.getName());
         holder.tvPrice.setText("Price : "+food.getPrice());
         Picasso.with(context).load(food.getImage()).into(holder.imageView);
+        holder.icon_cart.setOnClickListener(view -> iClick.onClickIcon(food));
         holder.layout.setOnClickListener(view -> iClick.onClick(food));
+
 
 
     }
@@ -65,7 +68,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
     }
 
     public class FoodViewHolder extends RecyclerView.ViewHolder {
-        ImageView imageView;
+        ImageView imageView,icon_cart;
         TextView tvName,tvPrice;
         LinearLayout layout;
         public FoodViewHolder(@NonNull View itemView) {
@@ -74,6 +77,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
             tvName = itemView.findViewById(R.id.tv_name_food);
             tvPrice = itemView.findViewById(R.id.tv_price_food);
             layout = itemView.findViewById(R.id.linear_food);
+            icon_cart = itemView.findViewById(R.id.img_cart);
         }
     }
 }
