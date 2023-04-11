@@ -4,11 +4,15 @@ import static androidx.navigation.ui.BottomNavigationViewKt.setupWithNavControll
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -22,9 +26,19 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.myapplication.databinding.ActivityMainBinding;
 import com.example.myapplication.fragment.CartFragment;
 import com.example.myapplication.fragment.FoodFragment;
+import com.example.myapplication.model.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,16 +47,39 @@ public class MainActivity extends AppCompatActivity {
 
     FirebaseAuth mAuth;
     FirebaseUser user;
+    User user2;
+    List<User> userList;
 
-
+    String string;
+    int id;
     private BottomNavigationView bottomNavigationView;
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
+        SharedPreferences prefs = getSharedPreferences("MY_PREFS_NAME", MODE_PRIVATE);
+        string = prefs.getString("Email", "default value");
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("User");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                userList=new ArrayList<>();
+                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    user2 = dataSnapshot.getValue(User.class);
+                    userList.add(user2);
+                }
+                id=GetUser((ArrayList<User>)userList,string).getId();
+                SharedPreferences.Editor editor = getSharedPreferences("MY_PREFS_NAME", MODE_PRIVATE).edit();
+                editor.putString("Id",id+"");
+                editor.apply();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getApplicationContext(), "Fail", Toast.LENGTH_SHORT).show();
+            }
+        });
         setContentView(R.layout.activity_main);
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
@@ -54,6 +91,15 @@ public class MainActivity extends AppCompatActivity {
         setupWithNavController(bottomNavigationView,navController);
          appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+    }
+    public User GetUser(ArrayList<User> arrayList, String s){
+        for (User user : arrayList) {
+            if (user.getEmail().equals(s.trim()))
+            {
+                return user;
+            }
+        }
+        return new User(404,"Edit Pls!","email","Your Name","Edit Pls!");
     }
     private void checkLogin() {
         if(user == null){
