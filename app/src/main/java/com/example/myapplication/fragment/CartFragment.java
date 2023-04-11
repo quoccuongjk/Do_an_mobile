@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.myapplication.Pay;
 import com.example.myapplication.Profile;
 import com.example.myapplication.model.Details;
 import com.example.myapplication.model.Food;
@@ -37,7 +38,7 @@ public class CartFragment extends Fragment {
     MainActivity mainActivity;
     View mView;
     RecyclerView recyclerView;
-    TextView textView;
+    TextView textView, textView2;
     List<Details> detailsList,detailsList2;
     Details details;
     FoodCartAdapter foodCartAdapter;
@@ -50,11 +51,19 @@ public class CartFragment extends Fragment {
         mainActivity = (MainActivity) getActivity();
         init();
         foodCart();
+        textView2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), Pay.class);
+                startActivity(intent);
+            }
+        });
         return mView;
     }
     private void init() {
         textView = mView.findViewById(R.id.cart_pay);
         recyclerView = mView.findViewById(R.id.rcv_cart);
+        textView2 =mView.findViewById(R.id.cart_pay);
     }
     private void foodCart() {
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(mainActivity,1);
@@ -68,7 +77,7 @@ public class CartFragment extends Fragment {
     private void Update() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Details");
-        DatabaseReference myRef2 = myRef.child("2");
+        DatabaseReference myRef2 = myRef.child("1");
         myRef2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

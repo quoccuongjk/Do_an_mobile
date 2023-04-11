@@ -3,12 +3,140 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.UserFragment">
+    tools:context=".fragment.UserFragment"
+    >
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:background="#A4B9B9"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="130dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="300px"
+            android:id="@+id/img_avt"
+            android:layout_height="300px"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="100px"
+            android:src="@drawable/picture_1"
+            ></de.hdodenhof.circleimageview.CircleImageView>
+
+        <TextView
+            android:id="@+id/txt_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20px"
+            android:text="Name"
+            android:textAlignment="center"
+            android:textSize="77px"></TextView>
+        <LinearLayout
+            android:layout_marginTop="80px"
+            android:layout_marginLeft="50px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:textAlignment="center"
+                android:gravity="center"
+                android:text="Email:     "
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+            </TextView>
+            <EditText
+                android:id="@+id/edit_email"
+                android:layout_gravity="center"
+                android:enabled="false"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="30px"
+                android:textSize="77px">
+            </EditText>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="30px"
+            android:layout_marginLeft="50px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:textAlignment="center"
+                android:gravity="center"
+                android:text="Phone:    "
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+            </TextView>
+            <EditText
+                android:id="@+id/edit_phone"
+                android:enabled="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30px"
+                android:textSize="77px">
+            </EditText>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="30px"
+            android:layout_marginLeft="50px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:textAlignment="center"
+                android:gravity="center"
+                android:text="Địa chỉ:   "
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+            </TextView>
+            <EditText
+                android:id="@+id/edit_dc"
+                android:enabled="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30px"
+                android:textSize="77px">
+            </EditText>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/txt_update"
+            android:visibility="invisible"
+            android:enabled="false"
+            android:layout_marginTop="20px"
+            android:text="Cập nhập"
+            android:textAlignment="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="InvalidId">
+        </TextView>
+        <Button
+            android:id="@+id/bt_edit"
+            android:text="Edit"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:textColor="#FB0202"
+            android:backgroundTint="#A3B8B8"
+            android:layout_marginTop="400px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20px"
+            android:layout_marginRight="20px">
+        </Button>
+        <Button
+            android:id="@+id/bt_out"
+            android:text="Log Out"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:textColor="#FB0202"
+            android:backgroundTint="#A3B8B8"
+            android:layout_marginTop="5px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20px"
+            android:layout_marginRight="20px">
+        </Button>
+    </LinearLayout>
 
 </FrameLayout>

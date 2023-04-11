@@ -1,14 +1,17 @@
 package com.example.myapplication.fragment;
 
+import static android.content.Context.MODE_PRIVATE;
 import static androidx.core.content.ContextCompat.getSystemService;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,43 +38,22 @@ import java.util.ArrayList;
 
 
 public class UserFragment extends Fragment {
-
     View mView;
-    ImageView imageView ;
+    ImageView imageView;
+    MainActivity mainActivity;
     Button button , button2;
     String value1;
     ArrayList<User> ListUser;
     User user;
     TextView textView1,textView5;
     int id;
-    Login login;
     EditText editText,editText2,editText3;
-    @SuppressLint("MissingInflatedId")
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_user, container, false);
-        return mView;
-    }
-
-    private void init() {
-        value1= Login.email_profile;
-        imageView= mView.findViewById(R.id.back_user);
-        textView1=mView.findViewById(R.id.name_user);
-        textView5=mView.findViewById(R.id.update_profile);
-        button = mView.findViewById(R.id.out_user);
-        button2 = mView.findViewById(R.id.edit_user);
-        editText = mView.findViewById(R.id.email_user);
-        editText2 = mView.findViewById(R.id.sdt_user);
-        editText3 = mView.findViewById(R.id.diachi_user);
-    }
-    private void onClick() {
-
-
-
-//        InputMethodManager imm = (InputMethodManager) getSystemService(getContext(),Context.INPUT_METHOD_SERVICE);
-//        imm.hideSoftInputFromWindow(editText2.getWindowToken(), 0);
-        button2.setOnClickListener(new View.OnClickListener() {
+        mainActivity = (MainActivity) getActivity();
+        init();
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 editText2.setEnabled(true);
@@ -98,25 +80,29 @@ public class UserFragment extends Fragment {
             }
         });
         GetData();
-        button.setOnClickListener(new View.OnClickListener() {
+        button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent((getContext()),Login.class);
+                Intent intent = new Intent(getContext(),Login.class);
                 startActivity(intent);
             }
         });
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(), MainActivity.class);
-                startActivity(intent);
-                //finish();
-            }
-        });
+        return mView;
     }
 
-
+    private void init() {
+        editText=mView.findViewById(R.id.edit_email);
+        editText2=mView.findViewById(R.id.edit_phone);
+        editText3=mView.findViewById(R.id.edit_dc);
+        button = mView.findViewById(R.id.bt_edit);
+        button2 = mView.findViewById(R.id.bt_out);
+        imageView= mView.findViewById(R.id.img_avt);
+        textView1=mView.findViewById(R.id.txt_name);
+        textView5=mView.findViewById(R.id.txt_update);
+    }
     private void GetData() {
+        SharedPreferences prefs = requireContext().getSharedPreferences("MY_PREFS_NAME", MODE_PRIVATE);
+        value1 = prefs.getString("Email", "default value");
         textView5.setVisibility(View.INVISIBLE);
         ListUser=new ArrayList<>();
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
@@ -145,7 +131,7 @@ public class UserFragment extends Fragment {
                         return user;
                     }
                 }
-                return new User(0,"Address","Email","Name","Phone");
+                return new User(0,"Edit Pls!",value1,"Your Name","Edit Pls!");
             }
         });
     }
