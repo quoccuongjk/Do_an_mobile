@@ -1,9 +1,8 @@
+
 package com.example.myapplication.fragment;
 
-import static android.content.Intent.getIntent;
 
-import android.content.Intent;
-import android.os.Build;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -62,7 +61,6 @@ public class FoodDetailFragment extends Fragment {
         init();
         onClickSubAdd();
         addCart();
-
         return mView;
     }
     private void init() {

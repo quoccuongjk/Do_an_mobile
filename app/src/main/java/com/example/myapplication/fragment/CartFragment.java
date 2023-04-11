@@ -38,9 +38,10 @@ public class CartFragment extends Fragment {
     View mView;
     RecyclerView recyclerView;
     TextView textView;
-    List<Food> foodList;
     List<Details> detailsList,detailsList2;
     Details details;
+    FoodCartAdapter foodCartAdapter;
+    int i;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,8 +49,6 @@ public class CartFragment extends Fragment {
         mView = inflater.inflate(R.layout.fragment_cart, container, false);
         mainActivity = (MainActivity) getActivity();
         init();
-        detailsList2=new ArrayList<>();
-        Toast.makeText(mainActivity, Update()+"", Toast.LENGTH_SHORT).show();
         foodCart();
         return mView;
     }
@@ -60,34 +59,31 @@ public class CartFragment extends Fragment {
     private void foodCart() {
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(mainActivity,1);
         recyclerView.setLayoutManager(layoutManager);
-        FoodCartAdapter foodCartAdapter = new FoodCartAdapter(getContext(),getList());
+        detailsList2=new ArrayList<>();
+        Update();
+        foodCartAdapter = new FoodCartAdapter(getContext(),detailsList2);
         recyclerView.setAdapter(foodCartAdapter);
     }
 
-    private List<Details> getList() {
-        List<Details> list = new ArrayList<>();
-        list.add(new Details(1,2,"dsads",1221321,7,"https://static.toiimg.com/thumb/53110049.cms?width=1200&height=900"));
-        return list;
-    }
-
-    private int Update() {
-        List<Details> list=new ArrayList<>();
+    private void Update() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Details");
-        DatabaseReference myRef2 = myRef.child("1");
+        DatabaseReference myRef2 = myRef.child("2");
         myRef2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    details=new Details();
                     details = dataSnapshot.getValue(Details.class);
-                    list.add(details);
+                    detailsList2.add(details);
                 }
+                foodCartAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(getContext(), "k thanh công", Toast.LENGTH_SHORT).show();
             }
-        });return list.size();
+        });
 }
 }
