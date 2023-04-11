@@ -41,7 +41,7 @@ public class UserFragment extends Fragment {
     View mView;
     ImageView imageView;
     MainActivity mainActivity;
-    Button button , button2;
+    TextView button , button2;
     String value1;
     ArrayList<User> ListUser;
     User user;

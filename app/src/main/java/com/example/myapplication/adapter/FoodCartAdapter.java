@@ -39,11 +39,6 @@ public class FoodCartAdapter extends RecyclerView.Adapter<FoodCartAdapter.FoodCa
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_cart,parent,false);
         return new FoodCartAdapter.FoodCartViewHolder(view);
     }
-
-    public void setData(List<Details> listData) {
-        list = listData;
-        notifyDataSetChanged();
-    }
     @Override
     public void onBindViewHolder(@NonNull FoodCartViewHolder holder, @SuppressLint("RecyclerView") int position) {
         total=0;

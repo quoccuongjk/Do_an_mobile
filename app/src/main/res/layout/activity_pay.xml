@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context=".Pay"
-    android:background="#FEFEFE">
+    android:background="@drawable/bg_button">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -15,12 +15,13 @@
         android:layout_marginRight="20dp"
         android:layout_marginTop="100dp"
         android:layout_marginBottom="100dp"
-        android:background="#AEB0B2"
+        android:background="@drawable/bg_indicator"
         >
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
+            android:textColor="@color/black"
             android:text="Thông Tin Thanh Toán"
             android:layout_marginTop="20dp"
             android:textSize="25dp"
@@ -31,6 +32,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <EditText
+                android:backgroundTint="@android:color/transparent"
+                android:background="@drawable/bg_login_layout"
                 android:id="@+id/edittextname_pay"
                 android:layout_margin="5dp"
                 android:hint="Nhập tên người nhận"
@@ -44,6 +47,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <EditText
+                android:backgroundTint="@android:color/transparent"
+                android:background="@drawable/bg_login_layout"
                 android:id="@+id/edittextsdt_pay"
                 android:layout_margin="5dp"
                 android:hint="Nhập Số điện thoại"
@@ -57,6 +62,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <EditText
+                android:backgroundTint="@android:color/transparent"
+                android:background="@drawable/bg_login_layout"
                 android:id="@+id/edittextemail_pay"
                 android:layout_margin="5dp"
                 android:hint="Nhập email người nhận"
@@ -70,6 +77,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <EditText
+                android:background="@drawable/bg_login_layout"
+                android:backgroundTint="@android:color/transparent"
                 android:id="@+id/edittextdc_pay"
                 android:layout_margin="5dp"
                 android:hint="Nhập địa chỉ"
@@ -93,6 +102,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <Button
+                android:background="@drawable/bg_indicator"
                 android:id="@+id/back_pay"
                 android:layout_marginRight="50dp"
                 android:backgroundTint="#ACA8A8"
@@ -101,6 +111,7 @@
                 android:layout_height="wrap_content">
             </Button>
             <Button
+                android:background="@drawable/bg_indicator"
                 android:id="@+id/ok_pay"
                 android:backgroundTint="#ACA8A8"
                 android:text="OK"
