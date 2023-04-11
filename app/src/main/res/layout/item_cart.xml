@@ -93,6 +93,7 @@
                     app:layout_constraintVertical_bias="1.0" />
 
                 <ImageView
+                    android:id="@+id/delete_cart"
                     android:layout_width="30dp"
                     android:layout_height="45dp"
                     android:src="@drawable/baseline_delete"

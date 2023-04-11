@@ -41,6 +41,7 @@ public class CartFragment extends Fragment {
     List<Details> detailsList,detailsList2;
     Details details;
     FoodCartAdapter foodCartAdapter;
+    int i;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -67,11 +68,12 @@ public class CartFragment extends Fragment {
     private void Update() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Details");
-        DatabaseReference myRef2 = myRef.child("1");
+        DatabaseReference myRef2 = myRef.child("2");
         myRef2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    details=new Details();
                     details = dataSnapshot.getValue(Details.class);
                     detailsList2.add(details);
                 }
