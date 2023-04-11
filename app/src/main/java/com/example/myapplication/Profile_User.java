@@ -116,6 +116,7 @@ public class Profile_User extends AppCompatActivity {
                 editText3.setText(GetUser(ListUser,value1).getDchi());
                 editText.setText(GetUser(ListUser,value1).getEmail());
                 id = GetUser(ListUser,value1).getId();
+                System.out.print(id);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {

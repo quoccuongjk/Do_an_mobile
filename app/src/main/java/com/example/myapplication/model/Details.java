@@ -20,6 +20,7 @@ public class Details {
         Image_Food=image_Food;
     }
 
+
     public String getImage_Food() {
         return Image_Food;
     }

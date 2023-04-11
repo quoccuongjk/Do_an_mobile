@@ -10,6 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +26,7 @@ import com.example.myapplication.R;
 import com.example.myapplication.model.Details;
 import com.example.myapplication.model.Food;
 import com.example.myapplication.model.User;
+import com.google.android.gms.common.util.concurrent.HandlerExecutor;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -35,15 +38,14 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.concurrent.ForkJoinPool;
 
 
 public class FoodDetailFragment extends Fragment {
-<<<<<<< HEAD
+    String UserIdString;
+
     TextView button_add_cart;
-=======
     int UserId;
-    Button button_add_cart;
->>>>>>> 7f019f9aabeac7d71dbb377ff9b8492da6aad5c8
     int count;
     FirebaseAuth mAuth;
     ImageView imageView1 , img_add,img_sub, img_food;
@@ -59,7 +61,8 @@ public class FoodDetailFragment extends Fragment {
         mView = inflater.inflate(R.layout.fragment_food_detail, container, false);
         init();
         onClickSubAdd();
-//        addCart();
+        addCart();
+
         return mView;
     }
     private void init() {
@@ -75,8 +78,6 @@ public class FoodDetailFragment extends Fragment {
         img_food = mView.findViewById(R.id.image_food_detail);
         count = 1;
         tv_count.setText(count+"");
-//        imageView2.setVisibility(imageView2.INVISIBLE);
-//        img_food = findViewById(R.id.image_profile);
         Bundle bundle = getArguments();
 
         food = (Food) bundle.get("Food");//
@@ -110,36 +111,23 @@ public class FoodDetailFragment extends Fragment {
 
     }
     private void addCart() {
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 7f019f9aabeac7d71dbb377ff9b8492da6aad5c8
         button_add_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                UserIdString = "123";
+                Log.v("UserId1",UserIdString);
+
+                ListUser = new ArrayList<>();
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
+                //DatabaseReference myRef = database.getReference("Details");
                 DatabaseReference myRef = database.getReference("Details");
-<<<<<<< HEAD
 
-                //String gmailUser = (mAuth.getCurrentUser().getEmail());
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                String gmailUser = user.getEmail();
-
-
-                int FoodId = food.getId();
-                Details details = new Details("aaa",FoodId,count);
-                myRef.child("9").setValue(details, new DatabaseReference.CompletionListener() {
-=======
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                String gmailUser = user.getEmail();
+                 String gmailUser = user.getEmail();
                 gmail = gmailUser;
-                Log.d("123",gmailUser);
-                ListUser=new ArrayList<>();
-                FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-                DatabaseReference databaseReference = firebaseDatabase.getReference("User");
+                DatabaseReference databaseReference = database.getReference("User");
 
-                databaseReference.addValueEventListener(new ValueEventListener() {
+                 databaseReference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         for(DataSnapshot dataSnapshot : snapshot.getChildren()){
@@ -147,31 +135,42 @@ public class FoodDetailFragment extends Fragment {
                             ListUser.add(user1);
                         }
                         UserId = GetUser(ListUser,gmail).getId();
+                        UserIdString = String.valueOf(UserId);
+                        Log.v("UserId2",UserIdString);
                     }
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
                         Toast.makeText(getContext(), "Fail", Toast.LENGTH_SHORT).show();
                     }
                 });
-                Log.d("UserId",String.valueOf(UserId));
                 int FoodId = food.getId();
-                Details details = new Details(UserId,FoodId,food.getName(),food.getPrice(),count,food.getImage());
-                String child = String.valueOf(UserId);
-                myRef.child(child).setValue(details, new DatabaseReference.CompletionListener() {
->>>>>>> 7f019f9aabeac7d71dbb377ff9b8492da6aad5c8
-                    @Override
-                    public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
-                        Toast.makeText(getContext(),"Thêm vào giỏ hàng thành công",Toast.LENGTH_SHORT).show();
-                    }
-                });
-<<<<<<< HEAD
+                final String[] child = {""};
+                final Handler handler = new Handler(Looper.getMainLooper());
+                 handler.postDelayed(new Runnable() {
+                     @Override
+                     public void run() {
+                         Details details = new Details(UserId,FoodId,food.getName(),food.getPrice(),count,food.getImage());
+                         child[0] = String.valueOf(UserId);
+                         Log.v("UserId3",UserIdString);
+                         myRef.child(child[0]).child(String.valueOf(FoodId)).setValue(details, new DatabaseReference.CompletionListener() {
+                             @Override
+                             public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                                 Toast.makeText(getContext(),"Thêm vào giỏ hàng thành công",Toast.LENGTH_SHORT).show();
+                             }
+                         });
+                         //Details details = new Details(UserId,FoodId,food.getName(),food.getPrice(),count,food.getImage());
+                     }
+                 },1000);
 
-=======
->>>>>>> 7f019f9aabeac7d71dbb377ff9b8492da6aad5c8
-            }
+
+
+//                Intent intent = new Intent(getContext(), CartFragment.class);
+//                startActivity(intent);
+        }
         });
 
     }
+
 
 
     private int TongTien() {
