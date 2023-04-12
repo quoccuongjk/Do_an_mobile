@@ -62,7 +62,10 @@ public class FoodCartAdapter extends RecyclerView.Adapter<FoodCartAdapter.FoodCa
         holder.textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int i = holder.count;
+                DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("Details");
+                DatabaseReference dbRef2 = dbRef.child(details.getId_User()+"");
+                DatabaseReference dbRef3 = dbRef2.child(details.getId_Food()+"");
+                dbRef3.setValue(new Details(details.getId_User(),details.getId_Food(), details.getName_Food(), details.getPrice_Food(), holder.count-1, details.getImage_Food()));
                 if(holder.count>1){
                 holder.count--;}
                 if (holder.count==1){holder.textView.setVisibility(View.INVISIBLE);}
@@ -75,6 +78,10 @@ public class FoodCartAdapter extends RecyclerView.Adapter<FoodCartAdapter.FoodCa
         holder.textView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("Details");
+                DatabaseReference dbRef2 = dbRef.child(details.getId_User()+"");
+                DatabaseReference dbRef3 = dbRef2.child(details.getId_Food()+"");
+                dbRef3.setValue(new Details(details.getId_User(),details.getId_Food(), details.getName_Food(), details.getPrice_Food(), holder.count+1, details.getImage_Food()));
                 holder.textView.setVisibility(View.VISIBLE);
                 int i= holder.count;
                 holder.count++;
@@ -99,7 +106,6 @@ public class FoodCartAdapter extends RecyclerView.Adapter<FoodCartAdapter.FoodCa
                         notifyDataSetChanged();
                     }
                 });
-
             }
         });
     }

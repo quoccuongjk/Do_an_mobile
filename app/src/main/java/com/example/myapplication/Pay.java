@@ -37,6 +37,7 @@ public class Pay extends AppCompatActivity {
     User user;
     ArrayList<User> ListUser;
     EditText editText1,editText2,editText3,editText4;
+    int id_user;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +73,7 @@ public class Pay extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Delete_Cart(string);
                 Intent intent = new Intent(getApplicationContext(),Paydone.class);
                 startActivity(intent);
                 new Handler().postDelayed(new Runnable() {
@@ -79,13 +81,44 @@ public class Pay extends AppCompatActivity {
                     public void run() {
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(intent);
-                        finish(); // Để ngăn Activity B quay lại khi nhấn nút Back trên Activity A
+                        finish();
                     }
-                }, 2000);
+                }, 3000);
             }
         });
     }
+    public void Delete_Cart(String string){
+        ListUser=new ArrayList<>();
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference = firebaseDatabase.getReference("User");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    user = dataSnapshot.getValue(User.class);
+                    ListUser.add(user);
+                }
+                id_user=GetUser(ListUser,string).getId();
+                FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+                DatabaseReference databaseReference = firebaseDatabase.getReference("Details");
+                DatabaseReference myRef = databaseReference.child(id_user+"");
+                myRef.removeValue();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+            public User GetUser(ArrayList<User> arrayList,String s){
+                for (User user : arrayList) {
+                    if (user.getEmail().trim().equals(string.trim()))
+                    {
+                        return user;
+                    }
+                }
+                return new User(0,"Edit Pls!",string,"Your Name","Edit Pls!");
+            }
+        });
 
+    }
     private void GetInfo(String string) {
         ListUser=new ArrayList<>();
         editText1.setEnabled(false);

@@ -6,40 +6,52 @@
     android:layout_height="match_parent"
     tools:context=".Paydone"
     android:orientation="vertical"
-    android:background="#DADBDF">
-    <ImageView
-        android:src="@drawable/done"
-        android:layout_marginTop="50dp"
+    android:background="@drawable/bg_indicator">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_width="200dp"
-        android:layout_height="200dp">
-    </ImageView>
+        android:layout_marginTop="33dp"
+        android:orientation="vertical"
+        >
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        app:cardCornerRadius="77dp"
+        android:layout_gravity="center"
+        >
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:src="@drawable/done"></ImageView>
+    </androidx.cardview.widget.CardView>
+    </LinearLayout>
     <TextView
+        android:layout_width="150dp"
+        android:layout_height="134dp"
         android:layout_gravity="center"
         android:layout_marginTop="40dp"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
+        android:text="Your order is Confirmed "
         android:textColor="#BB5A2B"
         android:textSize="30dp"
-        android:text="Your order is Confirmed ">
-    </TextView>
+        android:textStyle="bold"></TextView>
     <ImageView
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="66dp"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:src="@drawable/done_pay"
         >
     </ImageView>
-    <Button
-        android:layout_marginRight="50dp"
-        android:layout_marginLeft="33dp"
-        android:layout_marginTop="222dp"
+    <TextView
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="101dp"
         android:id="@+id/back_donepay"
-        android:text="Tiếp tục mua hàng"
+        android:text="Đơn hàng đang được giao đến bạn !"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/black">
-    </Button>
+        android:layout_height="wrap_content">
+    </TextView>
 </LinearLayout>

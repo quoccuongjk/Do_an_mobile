@@ -46,7 +46,7 @@ public class CartFragment extends Fragment {
     RecyclerView recyclerView;
     static TextView textView;
     TextView textView2;
-    List<Details> detailsList,detailsList2;
+    List<Details> detailsList2;
     Details details;
     FoodCartAdapter foodCartAdapter;
     String gmail;
@@ -63,8 +63,15 @@ public class CartFragment extends Fragment {
         textView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), Pay.class);
-                startActivity(intent);
+                if(textView2.getText().toString().trim().equals("Buy Now")||textView2.getText().toString().trim().equals("Cart is Empty")){
+                    Intent intent = new Intent(getActivity(), MainActivity.class);
+                    startActivity(intent);
+                }
+                else
+                {
+                    Intent intent = new Intent(getActivity(), Pay.class);
+                    startActivity(intent);
+                }
             }
         });
         return mView;
