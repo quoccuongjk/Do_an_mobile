@@ -45,9 +45,9 @@ public class UserFragment extends Fragment {
     String value1;
     ArrayList<User> ListUser;
     User user;
-    TextView textView1,textView5;
+    TextView textView5;
     int id;
-    EditText editText,editText2,editText3;
+    EditText textView1,editText,editText2,editText3;
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_user, container, false);
@@ -60,6 +60,7 @@ public class UserFragment extends Fragment {
                 editText3.setEnabled(true);
                 textView5.setVisibility(View.VISIBLE);
                 textView5.setEnabled(true);
+                textView1.setEnabled(true);
             }
         });
         textView5.setOnClickListener(new View.OnClickListener() {
@@ -76,6 +77,7 @@ public class UserFragment extends Fragment {
                 usersRef.child(id+"").setValue(user1);
                 editText2.setEnabled(false);
                 editText3.setEnabled(false);
+                textView1.setEnabled(false);
                 GetData();
             }
         });
@@ -89,7 +91,6 @@ public class UserFragment extends Fragment {
         });
         return mView;
     }
-
     private void init() {
         editText=mView.findViewById(R.id.edit_email);
         editText2=mView.findViewById(R.id.edit_phone);
@@ -131,7 +132,7 @@ public class UserFragment extends Fragment {
                         return user;
                     }
                 }
-                return new User(0,"Edit Pls!",value1,"Your Name","Edit Pls!");
+                return new User(arrayList.size()+1,"Edit Pls!",value1,"Edit Your Name","Edit Pls!");
             }
         });
     }

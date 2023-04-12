@@ -25,14 +25,17 @@
             android:src="@drawable/picture_1"
             ></de.hdodenhof.circleimageview.CircleImageView>
 
-        <TextView
+        <EditText
+            android:layout_gravity="center"
+            android:backgroundTint="@android:color/transparent"
             android:id="@+id/txt_name"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20px"
-            android:text="Name"
+            android:text="name_user"
+            android:enabled="false"
             android:textAlignment="center"
-            android:textSize="77px"></TextView>
+            android:textSize="77px"></EditText>
         <LinearLayout
             android:background="@drawable/bg_button"
             android:layout_marginTop="100px"
@@ -41,13 +44,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-            <TextView
+            <ImageView
                 android:textAlignment="center"
                 android:gravity="center"
-                android:text="Email:     "
+                android:src="@drawable/email"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent">
-            </TextView>
+            </ImageView>
             <EditText
                 android:backgroundTint="@android:color/transparent"
                 android:layout_marginEnd="30dp"
@@ -68,13 +71,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-            <TextView
+            <ImageView
                 android:textAlignment="center"
                 android:gravity="center"
-                android:text="Phone:    "
+                android:src="@drawable/baseline_local_phone_24"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent">
-            </TextView>
+            </ImageView>
             <EditText
                 android:backgroundTint="@android:color/transparent"
                 android:layout_marginEnd="30dp"
@@ -94,13 +97,13 @@
             android:layout_height="wrap_content"
             android:background="@drawable/bg_button"
             android:orientation="horizontal">
-            <TextView
+            <ImageView
                 android:textAlignment="center"
                 android:gravity="center"
-                android:text="Địa chỉ:   "
+                android:src="@drawable/location"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent">
-            </TextView>
+            </ImageView>
             <EditText
                 android:backgroundTint="@android:color/transparent"
                 android:layout_marginEnd="30dp"
