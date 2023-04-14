@@ -132,7 +132,7 @@ public class UserFragment extends Fragment {
                         return user;
                     }
                 }
-                return new User(arrayList.size()+1,"Edit Pls!",value1,"Edit Your Name","Edit Pls!");
+                return new User(arrayList.size()+1,"Edit Your Address!",value1,"Edit Your Name","Edit Your Phone!");
             }
         });
     }
