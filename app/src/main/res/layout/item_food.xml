@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_margin="20dp"
     android:layout_width="match_parent"
-    android:layout_height="85dp"
+    android:layout_height="90dp"
     android:background="@drawable/bg_relativelayout"
     android:id="@+id/lin_food">
     <LinearLayout
@@ -36,7 +36,7 @@
             <TextView
                 android:id="@+id/tv_name_food"
                 android:text="Discription"
-                android:textSize="25sp"
+                android:textSize="23sp"
                 android:textColor="#FF5722"
                 android:textStyle="bold"
                 android:gravity="center"
@@ -45,7 +45,7 @@
             <TextView
                 android:id="@+id/tv_price_food"
                 android:text="Price: 50000"
-                android:textSize="25sp"
+                android:textSize="23sp"
                 android:textColor="@color/black"
                 android:gravity="center"
                 android:layout_width="match_parent"

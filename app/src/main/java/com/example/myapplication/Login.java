@@ -1,5 +1,4 @@
 package com.example.myapplication;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -39,6 +38,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class Login extends AppCompatActivity {
     TextInputEditText editTextEmail,editTextPassword;
