@@ -61,8 +61,8 @@ public class FoodCartAdapter extends RecyclerView.Adapter<FoodCartAdapter.FoodCa
         if (holder.count==1){holder.textView.setVisibility(View.INVISIBLE);}
         holder.textView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("Details");
+            public void onClick(View view) {DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("Details");
+                details=list.get(position);
                 DatabaseReference dbRef2 = dbRef.child(details.getId_User()+"");
                 DatabaseReference dbRef3 = dbRef2.child(details.getId_Food()+"");
                 dbRef3.setValue(new Details(details.getId_User(),details.getId_Food(), details.getName_Food(), details.getPrice_Food(), holder.count-1, details.getImage_Food()));
@@ -78,12 +78,12 @@ public class FoodCartAdapter extends RecyclerView.Adapter<FoodCartAdapter.FoodCa
         holder.textView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                details=list.get(position);
                 DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("Details");
                 DatabaseReference dbRef2 = dbRef.child(details.getId_User()+"");
                 DatabaseReference dbRef3 = dbRef2.child(details.getId_Food()+"");
                 dbRef3.setValue(new Details(details.getId_User(),details.getId_Food(), details.getName_Food(), details.getPrice_Food(), holder.count+1, details.getImage_Food()));
                 holder.textView.setVisibility(View.VISIBLE);
-                int i= holder.count;
                 holder.count++;
                 holder.tvCount.setText(holder.count+"");
                 holder.tvPrice.setText("Price: "+holder.total*holder.count+" USD");
@@ -95,6 +95,7 @@ public class FoodCartAdapter extends RecyclerView.Adapter<FoodCartAdapter.FoodCa
         holder.imageView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                details=list.get(position);
                 int i=holder.getAdapterPosition();
                 total=total-list.get(i).getPrice_Food()*list.get(i).getCunt_Food();
                 if(total!=0){
