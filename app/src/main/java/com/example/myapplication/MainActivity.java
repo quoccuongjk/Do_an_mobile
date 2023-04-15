@@ -124,10 +124,7 @@ public class MainActivity extends AppCompatActivity {
                 FirebaseAuth.getInstance().signOut();
                 Intent intent = new Intent((getApplicationContext()),Login.class);
                 startActivity(intent);
-                return super.onOptionsItemSelected(item);
-            case R.id.profile1:
-                Intent intent2 = new Intent(getApplicationContext(),Profile_User.class);
-                startActivity(intent2);
+                finish();
                 return super.onOptionsItemSelected(item);
         }
         return super.onOptionsItemSelected(item);

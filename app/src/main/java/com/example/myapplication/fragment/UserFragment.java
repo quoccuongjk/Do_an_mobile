@@ -28,6 +28,7 @@ import com.example.myapplication.MainActivity;
 import com.example.myapplication.Profile_User;
 import com.example.myapplication.R;
 import com.example.myapplication.model.User;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -85,8 +86,10 @@ public class UserFragment extends Fragment {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(),Login.class);
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(mainActivity,Login.class);
                 startActivity(intent);
+                mainActivity.finish();
             }
         });
         return mView;

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">FoodFood</string>
     <string name="title_activity_settings">SettingsActivity</string>
     <string name="logout">Đăng xuất</string>
     <string name="login">Đăng Nhập</string>
