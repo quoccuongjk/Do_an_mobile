@@ -41,7 +41,7 @@
     </fragment>
     <fragment android:id="@+id/user"
         android:name="com.example.myapplication.fragment.UserFragment"
-        android:label="Cart"
+        android:label="User"
         tools:layout="@layout/fragment_user"/>
     <fragment android:id="@+id/food_detail"
         android:name="com.example.myapplication.fragment.FoodDetailFragment"
